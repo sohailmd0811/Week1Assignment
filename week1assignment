@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+vector<int> solution(const vector<int>& array, int targetvalue) {
+    unordered_map<int, int> map;
+    int i;
+    for (i = 0; i < array.size(); i++) {
+        if (map.count(targetvalue - array[i])) 
+            return {map[targetvalue - array[i]], i};
+        map[array[i]] = i;
+    }
+    return {};
+}
+
+int main() {
+    vector<int> array = {3,3};
+    int targetvalue = 6;
+    vector<int> values = solution(array, targetvalue);
+    
+    cout << "Solution is: [" << values[0] << ", " << values[1] << "]";
+    return 0;
+}
